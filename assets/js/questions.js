@@ -1,8 +1,13 @@
 // Questions, choices and answers in  an array with inner object elements
 var questions = [
     {
+        question: "Commonly used data types DO NOT include:",
+        choices: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
+        answer: "3. alerts"
+    },
+    {
         question: "How do you write 'Hello World' in an alert box?",
-        choices: ["1. msg('Hello World')", "2. alert('Hello World')", "3. prompt('Hello World')",  "4. alertBox('Hello World')"],
+        choices: ["1. msg('Hello World')", "2. alert('Hello World')", "3. prompt('Hello World')", "4. alertBox('Hello World')"],
         answer: "2. alert('Hello World')"
     },
     {
@@ -24,5 +29,5 @@ var questions = [
         question: "Which event occurs when the user clicks on an HTML element?",
         choices: ["1. onclick", "2. onchange", "3. onmouseover", "4. onmouseclick"],
         answer: "1. onclick"
-    },
+    }
 ];
