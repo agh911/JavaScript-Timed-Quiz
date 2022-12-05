@@ -13,6 +13,16 @@ var currentQuestionIndex = 0;
 var time = questions.length * 15;
 var timerInt;
 
+function quizTimer() {
+    // display the time in the browser window
+    time--;
+    timerEl.textContent = time;
+
+    if (time <= 0) {
+        quizOver();
+    }
+}
+
 // Correct/incorrect answer sound effects
 var sfxCorrect = new Audio("assets/sfx/correct.wav");
 var sfxIncorrect = new Audio("assets/sfx/incorrect.wav");
@@ -26,10 +36,11 @@ function startQuiz() {
     questionsWrap.classList.remove('hide');
 
     // Setting timer 
-    // setInterval(quizTimer, 1000);
-    timerInt = setInterval(function(){
-        quizTimer();
-      }, 1000);
+    if (currentQuestionIndex === 0) {
+        timerInt = setInterval(function(){
+            quizTimer();
+        }, 1000);
+    }
 
     var currentQuestion = questions[currentQuestionIndex];
     var choices = currentQuestion.choices;
@@ -48,7 +59,6 @@ startQuizButton.addEventListener('click', startQuiz);
 questionChoices.addEventListener('click', checkAnswer);
 
 function checkAnswer(event) {
-    console.log(event);
     if ((event.target).closest('button').attributes[0].textContent === 'true') {
         // get answer feedback
         answerFeedback();
@@ -63,7 +73,7 @@ function checkAnswer(event) {
         sfxIncorrect.play();
     }
     // move to the next question
-    if (currentQuestionIndex < questions.length -1) {
+    if (currentQuestionIndex < questions.length - 1) {
         startQuiz(currentQuestionIndex++);
     } else {
         quizOver();
@@ -77,19 +87,19 @@ function answerFeedback() {
         feedback.innerText = 'Correct!';
         setInterval(function () {
             feedback.classList.add('hide');
-        }, 400);
+        }, 500);
     } else {
         feedback.classList.remove('hide');
         feedback.innerText = 'Wrong...';
         setInterval(function () {
             feedback.classList.add('hide');
-        }, 400);
+        }, 500);
     }
 }
 
 function quizOver() {
     // stop timer
-    clearTimeout(timerInt);
+    clearInterval(timerInt);
     timerEl.textContent = time;
 
     var endScreen = document.querySelector("#end-screen");
@@ -102,15 +112,4 @@ function quizOver() {
     // hide questions & feedback section
     questionsWrap.classList.add('hide');
     feedback.classList.add('hide');
-}
-
-function quizTimer() {
-    clearInterval(quizTimer);
-    // display the time in the browser window
-    time--;
-    timerEl.textContent = time;
-
-    if (time === 0) {
-        quizOver();
-    }
 }
