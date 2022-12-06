@@ -19,5 +19,17 @@ function displayHighscores() {
   }, 1000);
   }  
 }
+
+// Create function to clear the highscores board
+function clearBoard() {
+  localStorage.removeItem("highscores");
+  location.reload();
+}
+// add event listener to the 'Clear' button and call function clearBoard
+var clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click", function(){
+  clearBoard();
+})
+
 // Call displayHighscores function to run when the page loads
 displayHighscores();
