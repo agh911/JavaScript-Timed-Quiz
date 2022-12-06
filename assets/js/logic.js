@@ -37,11 +37,17 @@ function startQuiz() {
 
     // Setting timer 
     if (currentQuestionIndex === 0) {
-        timerInt = setInterval(function(){
+        timerInt = setInterval(function () {
             quizTimer();
         }, 1000);
     }
 
+    getQuestion();
+}
+startQuizButton.addEventListener('click', startQuiz);
+questionChoices.addEventListener('click', checkAnswer);
+
+function getQuestion() {
     var currentQuestion = questions[currentQuestionIndex];
     var choices = currentQuestion.choices;
 
@@ -55,8 +61,6 @@ function startQuiz() {
         questionChoices.insertAdjacentHTML('beforeend', `<button data-correct=${isCorrect}>${choice}</button`);
     }
 }
-startQuizButton.addEventListener('click', startQuiz);
-questionChoices.addEventListener('click', checkAnswer);
 
 function checkAnswer(event) {
     if ((event.target).closest('button').attributes[0].textContent === 'true') {
@@ -74,7 +78,7 @@ function checkAnswer(event) {
     }
     // move to the next question
     if (currentQuestionIndex < questions.length - 1) {
-        startQuiz(currentQuestionIndex++);
+        getQuestion(currentQuestionIndex++);
     } else {
         quizOver();
     }
