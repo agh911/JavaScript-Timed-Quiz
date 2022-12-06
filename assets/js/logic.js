@@ -86,7 +86,7 @@ function checkAnswer(event) {
 questionChoices.addEventListener('click', checkAnswer);
 
 function answerFeedback() {
-    if (checkAnswer === 'true') {
+    if ((event.target).closest('button').attributes[0].textContent === 'true') {
         feedback.classList.remove('hide');
         feedback.innerText = 'Correct!';
         setInterval(function () {
@@ -117,3 +117,34 @@ function quizOver() {
     questionsWrap.classList.add('hide');
     feedback.classList.add('hide');
 }
+
+function saveHighscore() {
+    // get value of input box
+    var userInitials = initials.value.toUpperCase();
+    // check if user entered initials in the input box
+    if (userInitials === "") {
+        alert("Your initials input should not be blank");
+    } else if (userInitials.length > 3) {
+        alert("Your input should not be longer than 3 characters");
+    } else {
+        // retreive the existing saved scores from localStorage
+        var highscores;
+        if (JSON.parse(localStorage.getItem("highscores")) != null) {
+            highscores = JSON.parse(window.localStorage.getItem("highscores"));
+        } else {
+            highscores = [];
+        }
+        // create score object for current user
+        var newUserScore = {
+            initials: userInitials,
+            score: time
+        };
+        highscores.push(newUserScore);
+        // save score to the localStorage
+        localStorage.setItem("highscores", JSON.stringify(highscores));
+        // get user to next page
+        location.href = "highscores.html";
+    }
+}
+// add event for when the user clicks button to submit initials
+submitButton.addEventListener('click', saveHighscore);
