@@ -22,16 +22,22 @@ The quiz needed to check for the following:
 The following animation shows the functionality of the quiz:
 
 ![quiz-functionality-gif](assets/images/quiz.gif)
+
+
 ## Links
 
-* [Deployed application.](https://agh911.github.io/Javascript-Timed-Quiz/)
+* [Deployed application.](https://agh911.github.io/JavaScript-Timed-Quiz/)
+
+
 ## Credits
 
 * [Sorting quiz highscores.](https://stackoverflow.com/questions/26397308/do-i-need-parseint-if-i-want-to-sort-numeric-object-keys)
 * [GitHub Badges.](https://shields.io/)
+
+
 ## License
 
-![License](https://img.shields.io/github/license/agh911/Bootstrap-Portfolio?color=informational&label=License)
+![License](https://img.shields.io/github/license/agh911/JavaScript-Timed-Quiz?color=informational&label=License)
 
 This project is licensed under the MIT License - see the LICENSE.md file for details.
 
